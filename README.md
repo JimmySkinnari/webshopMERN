@@ -1,7 +1,7 @@
 # Webshop MERN
 
 Trying out the MERN stack
-Learning Mongoose, react hooks & context api 
+using react hooks & context api 
 
 ## Packages used:
 
