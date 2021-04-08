@@ -17,13 +17,13 @@ const SignUp = () => {
                 }}
             />
             <input
-                type="text"
+                type="password"
                 placeholder="Password"
                 onChange={(e) => {
                     setPassword(e.target.value)
                 }} />
             <input
-                type="text"
+                type="password"
                 placeholder="Repeate Password"
                 onChange={(e) => {
                     setPasswordRepeate(e.target.value)
