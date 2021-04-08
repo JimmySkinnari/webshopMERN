@@ -8,8 +8,8 @@ const Product = ({ item }) => {
     return (
         <div className="product">
             <p className="productName">{item.productName}</p>
-            <p className="productDescription">Description: {item.description}</p>
-            <p className="productPrice">Price: {item.price} kr</p>
+            <p className="productDescription">{item.description}</p>
+            <p className="productPrice">{item.price} kr</p>
             <button
                 className="firstPageBtn"
                 onClick={() => addToCart(item)}
