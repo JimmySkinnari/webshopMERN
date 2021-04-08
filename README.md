@@ -4,15 +4,16 @@ Trying out the MERN stack
 using react hooks & context api 
 
 ## Packages used:
-
-### :tennis:  
+    
+     
+### :computer:
     axios: 0.21.1,  
     react: 17.0.2,  
     react-dom: 17.0.2,  
     react-icons: 4.2.0,  
     react-router-dom: 5.2.0,  
   
-### :computer:  
+### :tennis: 
     cors: 2.8.5,  
     dotenv: 8.2.0,  
     express: 4.17.1,  
