@@ -2,7 +2,7 @@
 
 Trying out the MERN stack
 
-#Packages used:
+# Packages used:
 
 Client:
     axios: 0.21.1,
