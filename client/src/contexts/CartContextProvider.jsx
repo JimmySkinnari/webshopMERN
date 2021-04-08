@@ -18,7 +18,7 @@ const CartContextProvider = (props) => {
     const buyProducts = () => {
 
         const total = cartItems.reduce((prev, cur) => {
-            return prev + cur.price
+            return prev + cur.price * cur.qty
         }, 0)
 
         Axios.post(`http://localhost:8080/order/create/`, { userID: userID, products: cartItems, total: total })
@@ -37,7 +37,6 @@ const CartContextProvider = (props) => {
     const getTotalCartItems = cartItems.reduce((prev, cur) => {
         return prev + cur.qty
     }, 0)
-
 
     const addToCart = (product) => {
         Axios.get(`http://localhost:8080/product/getById/${product._id}`, {})
@@ -83,7 +82,6 @@ const CartContextProvider = (props) => {
                     x._id === product._id ? { ...exist, qty: exist.qty - 1 } : x
                 )
             )
-
         }
     }
 
