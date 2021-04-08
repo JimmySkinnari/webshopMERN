@@ -182,14 +182,17 @@ input {
 .productName {
   margin-top: 100px;
   margin-bottom: 10px;
-  font-weight: bold;
+  font-size: 20px;
 }
 
 .productDescription {
   margin-top: 5px;
   margin-bottom: 10px;
   font-style: italic;
+}
 
+.productPrice {
+  font-weight: bold;
 }
 
 a {
