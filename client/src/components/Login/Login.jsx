@@ -3,7 +3,6 @@ import React, { useContext } from 'react'
 import { LoginContext } from '../../contexts/LoginContextProvider'
 import { NavLink } from 'react-router-dom'
 
-
 const Login = () => {
 
     const { login, setUserName, setPassword } = useContext(LoginContext)

@@ -25,13 +25,10 @@ const RegisterContextProvider = (props) => {
 
     const register = async () => {
 
-
         await Axios.post("http://localhost:8080/user/checkUserName", {
             userName
         }).then((res) => {
-            console.log(res)
             if (res.data) {
-                console.log(res.data.userName)
                 setIsUserNameTaken(!isUserNameTaken)
             }
         })
@@ -68,7 +65,6 @@ const RegisterContextProvider = (props) => {
             alert('Registration success')
             setIsUserLoggedIn(!isUserLoggedIn)
             history.push("/")
-
         }
     }
 

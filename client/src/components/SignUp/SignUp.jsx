@@ -2,7 +2,6 @@ import React, { useContext } from 'react'
 import { RegisterContext } from '../../contexts/RegisterUserContextProvider'
 import { NavLink } from 'react-router-dom'
 
-
 const SignUp = () => {
 
     const { register, setUserName, setPassword, setPasswordRepeate, setEmail, setFirstName, setSureName } = useContext(RegisterContext)

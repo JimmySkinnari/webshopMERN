@@ -4,7 +4,6 @@ import { LoginContext } from '../../contexts/LoginContextProvider'
 import { CartContext } from '../../contexts/CartContextProvider'
 import { BiCart } from 'react-icons/bi'
 
-
 const Header = () => {
 
     const { isUserLoggedIn, toggleLoginState } = useContext(LoginContext)
@@ -14,7 +13,6 @@ const Header = () => {
         emptyCart()
         toggleLoginState()
     }
-
 
     return (
         <div className="header">
@@ -26,10 +24,7 @@ const Header = () => {
 
             {isUserLoggedIn ? (
                 <>
-
-
                     <div className="loginButtons">
-
 
                         <NavLink
                             to='/purchase'
@@ -41,8 +36,6 @@ const Header = () => {
                                 getTotalCartItems
                             ) : (<></>)}
                         </NavLink>
-
-
                         <NavLink
                             to='/account'
                             className="navBtn"
@@ -56,7 +49,6 @@ const Header = () => {
                         >
                             Sign Out
                         </NavLink>
-
                     </div >
                 </>
             ) : (<></>)}

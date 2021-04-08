@@ -1,8 +1,7 @@
 import Product from './Product'
 import React, { useContext } from 'react'
 import { ProductContext } from '../../contexts/ProductContextProvider'
-import { LoginContext } from '../../contexts/LoginContextProvider'
-import { BiSearchAlt2, BiCart } from 'react-icons/bi'
+import { BiSearchAlt2 } from 'react-icons/bi'
 
 const ProductList = () => {
 
@@ -30,7 +29,6 @@ const ProductList = () => {
                         setSearchVal(e.target.value)
                     }}
                 />
-
                 <button
                     className="btn-search"
                     onClick={search}

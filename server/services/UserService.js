@@ -9,14 +9,7 @@ const getAllUsers = async (req, res) => {
     })
 }
 
-const deleteUser = async (req, res) => {
-    const id = req.params.id 
-    User.findByIdAndRemove(id).exec()
-    res.send(result)
-};
-
 const login = async (req, res) => {
-
     User.find( {userName: req.body.userName, password: req.body.password},
      (err, result) =>{
         if(err){
@@ -27,7 +20,6 @@ const login = async (req, res) => {
 }
 
 const register = async (req, res) => {
-
     const user = await new User({
         userName: req.body.userName,
         password: req.body.password,
@@ -41,13 +33,12 @@ const register = async (req, res) => {
     res.json(savedUser);
      } catch (err) {
         res.json({
-        message: 'Please fill out the entire form. Registration failed.',
+        message: 'Please fill out all the fields.',
         })
   }
 }
 
 const checkUserName = async (req, res) => {
-
     User.findOne( {userName: req.body.userName},
      (err, result) =>{
         if(err){
@@ -58,7 +49,6 @@ const checkUserName = async (req, res) => {
 }
 
 exports.getAllUsers = getAllUsers
-exports.deleteUser = deleteUser
 exports.login = login
 exports.checkUserName = checkUserName
 exports.register = register

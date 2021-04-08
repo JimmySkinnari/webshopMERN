@@ -31,11 +31,8 @@ const Purchase = () => {
                     </div>
                 )
             }
-
             <div className="purchaseNavigation">
                 <p>Total: {getTotalCartPrice} SEK</p>
-
-
                 <button
                     onClick={buyProducts}
                     className="btn"

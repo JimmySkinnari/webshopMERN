@@ -8,10 +8,6 @@ import CartContext from './contexts/CartContextProvider'
 import ProductContext from './contexts/ProductContextProvider'
 import RegisterContext from './contexts/RegisterUserContextProvider'
 
-// "My account" så man kan kolla sina orders
-// Visa endast sökfältet när man är i "/"-routen
-// Detaljvy?
-
 function App() {
 
   return (
