@@ -27,8 +27,6 @@
   width: 100%;
 }
 
-
-
 .body {
   background-color: rgb(178, 189, 192);
   height: 85vh;
@@ -196,10 +194,8 @@ input {
 }
 
 a {
-
   text-decoration: none;
   color: rgb(66, 70, 77);
-
 }
 
 .firstPageBtn {
