@@ -6,7 +6,8 @@
 .App {
   text-align: center;
   background-color: rgb(178, 189, 192);
-  height: 200vh;
+  height: auto;
+  min-height: 100vh;
 }
 
 .header {
@@ -50,6 +51,7 @@
   padding: 10px;
   text-align: left;
   transition: transform .1s;
+  max-width: 250px;
 }
 
 .product button {
