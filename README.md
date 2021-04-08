@@ -1,4 +1,4 @@
-# webshopMERN
+# Webshop MERN
 
 Trying out the MERN stack
 Learning Mongoose, react hooks & context api 
