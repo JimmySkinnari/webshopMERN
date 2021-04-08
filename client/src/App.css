@@ -180,11 +180,15 @@ input {
 
 .productName {
   margin-top: 100px;
+  margin-bottom: 10px;
+  font-weight: bold;
 }
 
 .productDescription {
   margin-top: 5px;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  font-style: italic;
+
 }
 
 a {
