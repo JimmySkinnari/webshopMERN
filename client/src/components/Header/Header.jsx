@@ -34,7 +34,9 @@ const Header = () => {
                             {cartItems ? (
 
                                 getTotalCartItems
-                            ) : (<></>)}
+                            ) : (
+                                <></>
+                            )}
                         </NavLink>
                         <NavLink
                             to='/account'
