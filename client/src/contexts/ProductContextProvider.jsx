@@ -4,41 +4,40 @@ import Axios from 'axios'
 export const ProductContext = createContext()
 
 const ProductContextProvider = (props) => {
+	const [productList, setProductList] = useState([{}])
+	const [searchVal, setSearchVal] = useState()
 
-    const [productList, setProductList] = useState([{}])
-    const [searchVal, setSearchVal] = useState()
+	useEffect(() => {
+		getProducts()
+	}, [])
 
-    useEffect(() => {
+	const getProducts = () => {
+		Axios.get('http://localhost:8080/product/getAll', {}).then((res) => {
+			setProductList(res.data)
+		})
+	}
 
-        getProducts()
-    }, [])
+	const productSearch = () => {
+		Axios.get(`http://localhost:8080/product/search/${searchVal}`, {}).then(
+			(res) => {
+				setProductList(res.data)
+			}
+		)
+	}
 
-    const getProducts = () => {
-
-        Axios.get('http://localhost:8080/product/getAll', {}).then((res) => {
-            setProductList(res.data)
-        })
-    }
-
-    const productSearch = () => {
-
-        Axios.get(`http://localhost:8080/product/search/${searchVal}`, {}).then((res) => {
-            setProductList(res.data)
-        })
-    }
-
-    return (
-        <ProductContext.Provider
-            value={{
-                productList,
-                productSearch,
-                searchVal,
-                setSearchVal,
-                getProducts
-            }}>
-            {props.children}
-        </ProductContext.Provider>
-    )
+	return (
+		<ProductContext.Provider
+			value={{
+				productList,
+				productSearch,
+				searchVal,
+				setSearchVal,
+				getProducts,
+			}}
+		>
+			{props.children}
+		</ProductContext.Provider>
+	)
 }
 
 export default ProductContextProvider

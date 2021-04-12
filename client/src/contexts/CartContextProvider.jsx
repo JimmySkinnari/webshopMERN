@@ -1,105 +1,106 @@
 import React, { createContext, useState, useContext } from 'react'
 import Axios from 'axios'
 import { LoginContext } from '../contexts/LoginContextProvider'
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 
 export const CartContext = createContext()
 
 const CartContextProvider = (props) => {
+	const { userID } = useContext(LoginContext)
+	const [cartItems, setCartItems] = useState([])
+	const history = useHistory()
 
-    const { userID } = useContext(LoginContext)
-    const [cartItems, setCartItems] = useState([])
-    const history = useHistory()
+	const emptyCart = () => {
+		setCartItems([])
+	}
 
-    const emptyCart = () => {
-        setCartItems([])
-    }
+	const buyProducts = () => {
+		const total = cartItems.reduce((prev, cur) => {
+			return prev + cur.price * cur.qty
+		}, 0)
 
-    const buyProducts = () => {
+		Axios.post(`http://localhost:8080/order/create/`, {
+			userID: userID,
+			products: cartItems,
+			total: total,
+		}).then((res) => {})
 
-        const total = cartItems.reduce((prev, cur) => {
-            return prev + cur.price * cur.qty
-        }, 0)
+		alert('order completed')
+		setCartItems([])
+		history.push('/')
+	}
 
-        Axios.post(`http://localhost:8080/order/create/`, { userID: userID, products: cartItems, total: total })
-            .then((res) => {
-            })
+	const getTotalCartPrice = cartItems.reduce((prev, cur) => {
+		return prev + cur.price * cur.qty
+	}, 0)
 
-        alert('order completed')
-        setCartItems([])
-        history.push('/')
-    }
+	const getTotalCartItems = cartItems.reduce((prev, cur) => {
+		return prev + cur.qty
+	}, 0)
 
-    const getTotalCartPrice = cartItems.reduce((prev, cur) => {
-        return prev + cur.price * cur.qty
-    }, 0)
+	const addToCart = (product) => {
+		Axios.get(
+			`http://localhost:8080/product/getById/${product._id}`,
+			{}
+		).then((res) => {
+			const product = res.data
 
-    const getTotalCartItems = cartItems.reduce((prev, cur) => {
-        return prev + cur.qty
-    }, 0)
+			if (cartItems) {
+				const exist = cartItems.find((x) => x._id === product._id)
 
-    const addToCart = (product) => {
-        Axios.get(`http://localhost:8080/product/getById/${product._id}`, {})
-            .then((res) => {
+				if (exist) {
+					// increases qty of prodct if it allready exists in the cart.
+					setCartItems(
+						cartItems.map((x) =>
+							x._id === product._id
+								? { ...exist, qty: exist.qty + 1 }
+								: x
+						)
+					)
+				} else {
+					// adds item to cart and set qty to 1
+					setCartItems([...cartItems, { ...product, qty: 1 }])
+				}
+			} else {
+				product.qty = 1
+				setCartItems([product])
+			}
+		})
+	}
 
-                const product = res.data
+	const deleteFromCart = (product) => {
+		const exist = cartItems.find((x) => x._id === product._id)
 
-                if (cartItems) {
+		// if only 1 qty of an item remains in the cart, we filter it out completely from the cart
+		if (exist.qty === 1) {
+			setCartItems(cartItems.filter((x) => x._id !== product._id))
+		} else {
+			// just decrease the qty to -= 1
 
-                    const exist = cartItems.find((x) => x._id === product._id)
+			setCartItems(
+				cartItems.map((x) =>
+					x._id === product._id ? { ...exist, qty: exist.qty - 1 } : x
+				)
+			)
+		}
+	}
 
-                    if (exist) {
-
-                        // increases qty of prodct if it allready exists in the cart.
-                        setCartItems(
-                            cartItems.map((x) =>
-                                x._id === product._id ? { ...exist, qty: exist.qty + 1 } : x
-                            )
-                        )
-                    }
-                    else { // adds item to cart and set qty to 1
-                        setCartItems([...cartItems, { ...product, qty: 1 }])
-                    }
-                }
-                else {
-                    product.qty = 1
-                    setCartItems([product])
-                }
-            })
-    }
-
-    const deleteFromCart = (product) => {
-
-        const exist = cartItems.find((x) => x._id === product._id)
-
-        // if only 1 qty of an item remains in the cart, we filter it out completely from the cart
-        if (exist.qty === 1) {
-            setCartItems(cartItems.filter((x) => x._id !== product._id))
-        } else {  // just decrease the qty to -= 1
-
-            setCartItems(
-                cartItems.map((x) =>
-                    x._id === product._id ? { ...exist, qty: exist.qty - 1 } : x
-                )
-            )
-        }
-    }
-
-    return (
-        <CartContext.Provider
-            value={{
-                cartItems,
-                addToCart,
-                emptyCart,
-                setCartItems,
-                buyProducts,
-                getTotalCartPrice,
-                deleteFromCart,
-                getTotalCartItems
-            }}>
-            {props.children}
-        </CartContext.Provider>
-    )
+	return (
+		<CartContext.Provider
+			value={{
+				cartItems,
+				addToCart,
+				emptyCart,
+				setCartItems,
+				buyProducts,
+				getTotalCartPrice,
+				deleteFromCart,
+				getTotalCartItems,
+			}}
+		>
+			{props.children}
+		</CartContext.Provider>
+	)
 }
 
 export default CartContextProvider
