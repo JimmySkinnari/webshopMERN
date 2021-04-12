@@ -1,7 +1,7 @@
 # Webshop MERN
 
 Trying out the MERN stack
-using react hooks & context api 
+using React hooks & Context API
 
 ## Packages used:
     
