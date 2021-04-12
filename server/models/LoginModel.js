@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 const LoginSchema = new mongoose.Schema({
     userName: {
@@ -9,6 +9,6 @@ const LoginSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-});
+})
 
-module.exports = LoginSchema;
+module.exports = LoginSchema

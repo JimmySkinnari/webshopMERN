@@ -1,7 +1,6 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const orderSchema = new mongoose.Schema({
-
   userID: {
     type: String,
     required: true
@@ -17,6 +16,6 @@ const orderSchema = new mongoose.Schema({
     required: true,
     min: 0
   }
-});
+})
 
-module.exports = mongoose.model('Order', orderSchema);
+module.exports = mongoose.model('Order', orderSchema)
